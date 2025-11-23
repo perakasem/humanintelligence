@@ -1,5 +1,5 @@
-# 📊 Student Financial Advisor  
-### Overspending Regression + Financial Stress Classification
+# 📊 HI-FI: AI Financial Buddy for Students 
+## Project Summary
 
 This repository contains two machine learning models designed to analyze and predict student financial behavior using expense and demographic data. The project includes:
 
