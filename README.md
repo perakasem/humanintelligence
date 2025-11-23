@@ -44,11 +44,13 @@ humanintelligence/
 │   ├── requirements.txt
 │   ├── alembic.ini
 │   ├── alembic/                 # Database migrations
+│   ├── data/                    # ML training data
 │   └── app/
 │       ├── main.py              # FastAPI app entry
 │       ├── config.py            # Configuration
 │       ├── database.py          # DB connection
 │       ├── models/              # SQLAlchemy models
+│       ├── ml_models/           # ML models
 │       ├── schemas/             # Pydantic schemas
 │       ├── services/            # Business logic & agents
 │       ├── routes/              # API endpoints
