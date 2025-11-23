@@ -47,7 +47,7 @@ export default function RiskTrendLine({ data }: RiskTrendLineProps) {
               border: '1px solid #e5e7eb',
               borderRadius: '8px',
             }}
-            labelFormatter={(label, payload) => {
+            labelFormatter={(label: string, payload: any[]) => {
               if (payload && payload[0]) {
                 return payload[0].payload.fullDate
               }

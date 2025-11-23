@@ -54,7 +54,7 @@ export default function Onboarding() {
     loadNextQuestion([], {})
   }, [])
 
-  const loadNextQuestion = async (fields: string[], answers: Record<string, string>) => {
+    const loadNextQuestion = async (fields: string[], _answers: Record<string, string>) => {
     setIsLoading(true)
     try {
       const response = await getNextQuestion({
