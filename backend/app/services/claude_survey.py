@@ -52,6 +52,7 @@ class ClaudeSurveyService:
 
     def _generate_mock_question(
         self,
+        conversation_history: list[dict],
         collected_fields: list[str],
         has_profile: bool = False
     ) -> dict:

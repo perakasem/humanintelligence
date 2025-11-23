@@ -77,7 +77,7 @@ export default function Landing() {
             <span className="text-primary-600"> student finances</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Get personalized financial coaching powered by AI. Understand your spending,
+            Get personalized financial guidance powered by AI. Understand your spending,
             reduce stress, and build better money habits—all tailored for student life.
           </p>
 
@@ -160,7 +160,7 @@ export default function Landing() {
               Chat with Your Coach
             </h3>
             <p className="text-gray-600">
-              Get personalized advice, action items, and mini lessons from your AI financial coach.
+              Get personalized advice, action items, and mini lessons from your AI financial guide.
             </p>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function Landing() {
         {/* Privacy note */}
         <div className="mt-20 text-center">
           <p className="text-sm text-gray-500">
-            Your financial data is used only for coaching—never sold or shared for advertising.
+            Your financial data is used only for guidance—never sold or shared for advertising.
             <br />
             <Link to="/about" className="text-primary-600 hover:underline">
               Learn more about our privacy practices

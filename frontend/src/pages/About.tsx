@@ -34,7 +34,7 @@ export default function About() {
               have access to financial education or personalized advice.
             </p>
             <p>
-              We built HI FI to change that. Using AI and machine learning, we
+              We built HI FI (Human Intelligence—Financial Independence)to change that. Using AI and machine learning, we
               provide the kind of personalized financial guidance that used to be available only
               to those who could afford a financial advisor.
             </p>
@@ -51,7 +51,7 @@ export default function About() {
                 opportunities
               </li>
               <li>
-                <strong>Your AI coach explains everything</strong> in plain language and gives you
+                <strong>Your AI guide explains everything</strong> in plain language and gives you
                 specific actions
               </li>
               <li>
@@ -65,7 +65,7 @@ export default function About() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Our Focus: Education</h2>
             <p className="mb-4">
               This isn't just about tracking expenses. We believe in financial literacy. That's why
-              your AI coach doesn't just tell you what to do—it teaches you why, with mini lessons
+              your AI guide doesn't just tell you what to do—it teaches you why, with mini lessons
               on topics like:
             </p>
             <ul className="list-disc list-inside space-y-2">
@@ -83,7 +83,7 @@ export default function About() {
             </p>
             <ul className="list-disc list-inside space-y-2">
               <li>
-                <strong>Your data is used only for coaching.</strong> We don't sell it or use it
+                <strong>Your data is used only for guidance.</strong> We don't sell it or use it
                 for advertising.
               </li>
               <li>
