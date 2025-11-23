@@ -3,7 +3,7 @@ from functools import lru_cache
 
 
 class Settings(BaseSettings):
-    # Database
+    # Databasek
     database_url: str = "postgresql://postgres:postgres@localhost:5432/student_finance"
 
     # Claude API
