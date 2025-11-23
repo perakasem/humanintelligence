@@ -1,5 +1,3 @@
-import json
-import anthropic
 from ..config import get_settings
 
 settings = get_settings()
@@ -25,7 +23,6 @@ class ClaudeSurveyService:
 
     def __init__(self):
         self.api_key = settings.anthropic_api_key
-        self.client = anthropic.Anthropic(api_key=self.api_key) if self.api_key else None
 
     async def generate_next_question(
         self,
@@ -49,101 +46,13 @@ class ClaudeSurveyService:
                 "suggested_type": str (text, number, select, etc.)
             }
         """
-        # Determine which fields to collect
-        if has_profile:
-            required = FINANCIAL_FIELDS
-        else:
-            required = REQUIRED_FIELDS
-
-        missing_fields = [f for f in required if f not in collected_fields]
-
-        if not missing_fields:
-            return {
-                "question": None,
-                "context": None,
-                "is_complete": True,
-                "suggested_type": None,
-                "field": None,
-                "options": None,
-                "progress": 1.0
-            }
-
-        # If no API key, fall back to mock questions
-        if not self.client:
-            return self._generate_mock_question(conversation_history, collected_fields, has_profile)
-
-        # Generate question using Claude API
-        try:
-            return await self._generate_claude_question(
-                conversation_history, collected_fields, missing_fields, required
-            )
-        except Exception as e:
-            print(f"Claude API error: {e}, falling back to mock questions")
-            return self._generate_mock_question(conversation_history, collected_fields, has_profile)
-
-    async def _generate_claude_question(
-        self,
-        conversation_history: list[dict],
-        collected_fields: list[str],
-        missing_fields: list[str],
-        required: list[str]
-    ) -> dict:
-        """Generate the next question using Claude API."""
-
-        system_prompt = self._get_survey_prompt()
-
-        # Build context about what's been collected
-        context = f"""
-Fields already collected: {', '.join(collected_fields) if collected_fields else 'None yet'}
-Fields still needed: {', '.join(missing_fields)}
-Next field to collect: {missing_fields[0]}
-
-Conversation so far:
-"""
-        for msg in conversation_history:
-            role = msg.get('role', 'user')
-            content = msg.get('content', '')
-            context += f"\n{role}: {content}"
-
-        if not conversation_history:
-            context += "\n(This is the start of the conversation)"
-
-        response = self.client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=500,
-            system=system_prompt,
-            messages=[
-                {"role": "user", "content": context}
-            ]
-        )
-
-        # Parse the response
-        response_text = response.content[0].text.strip()
-
-        # Handle markdown code blocks
-        if response_text.startswith("```"):
-            response_text = response_text.split("```")[1]
-            if response_text.startswith("json"):
-                response_text = response_text[4:]
-            response_text = response_text.strip()
-
-        try:
-            result = json.loads(response_text)
-            return {
-                "field": result.get("field", missing_fields[0]),
-                "question": result.get("question"),
-                "context": result.get("context"),
-                "is_complete": False,
-                "suggested_type": result.get("suggested_type", "text"),
-                "options": result.get("options"),
-                "progress": len(collected_fields) / len(required)
-            }
-        except json.JSONDecodeError:
-            # If parsing fails, fall back to mock
-            return self._generate_mock_question(conversation_history, collected_fields, len(required) != len(REQUIRED_FIELDS))
+        # TODO: Implement actual Claude API call
+        # For now, use rule-based question generation
+        return self._generate_mock_question(conversation_history, collected_fields, has_profile)
 
     def _generate_mock_question(
         self,
+        conversation_history: list[dict],
         collected_fields: list[str],
         has_profile: bool = False
     ) -> dict:
@@ -284,25 +193,25 @@ Conversation so far:
     def _get_survey_prompt(self) -> str:
         """Get the system prompt for generating survey questions."""
         return """You are a friendly financial coach collecting information from a college student. Your goal is to gather their financial data through a natural, conversational flow.
-                    
-                    Based on the conversation so far, generate the next question to ask. Be:
-                    - Warm and conversational, not robotic
-                    - Brief but clear
-                    - Encouraging when appropriate
-                    
-                    You need to collect these fields (mark which ones you've already gotten):
-                    - age, gender, year_in_school, major
-                    - monthly_income, financial_aid
-                    - tuition, housing, food, transportation
-                    - books_supplies, entertainment, personal_care
-                    - technology, health_wellness, miscellaneous
-                    - preferred_payment_method
-                    
-                    Return JSON with:
-                    {
-                      "field": "the_field_being_asked",
-                      "question": "Your conversational question",
-                      "context": "Optional helper text",
-                      "suggested_type": "number|text|select",
-                      "options": ["only", "for", "select", "types"]
-                    }"""
+
+Based on the conversation so far, generate the next question to ask. Be:
+- Warm and conversational, not robotic
+- Brief but clear
+- Encouraging when appropriate
+
+You need to collect these fields (mark which ones you've already gotten):
+- age, gender, year_in_school, major
+- monthly_income, financial_aid
+- tuition, housing, food, transportation
+- books_supplies, entertainment, personal_care
+- technology, health_wellness, miscellaneous
+- preferred_payment_method
+
+Return JSON with:
+{
+  "field": "the_field_being_asked",
+  "question": "Your conversational question",
+  "context": "Optional helper text",
+  "suggested_type": "number|text|select",
+  "options": ["only", "for", "select", "types"]
+}"""
