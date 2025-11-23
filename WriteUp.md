@@ -11,6 +11,8 @@ HI-FI is our Claude-powered financial buddy that combines a machine learning mod
 What makes HI-FI different is the "HI" part: Human Intelligence. We're not just throwing algorithms at people's problems. Our system understands that behind every budget is a human being with goals, fears, and dreams. Claude adapts its recommendations based on individual circumstances, whether you're a student building your first emergency fund or a young professional aiming for a new house. 
 We place an emphasis on AI safety and guardrails to ensure our agents are goal-oriented and are protected from malicious prompting. 
 
+The tool uses two machine learning models in the backend to predict student’s financial performance which is sent to Claude. A regression model is used to predict the amount of money overspent by students and a classification model is used to classify the student’s financial stress with an R^2 of .95 and an accuracy of 98% respectively. 
+
 #### Why It Works
 
 The effectiveness of HI-FI lies in its hybrid intelligence architecture. Machine learning provides data-driven analysis that identifies patterns humans might miss. Meanwhile, Claude adds emotional intelligence, explaining the "why" behind recommendations and providing motivation to actually follow through. This combination addresses both the analytical and psychological barriers to financial wellness.
