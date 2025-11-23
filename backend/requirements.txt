@@ -1,0 +1,39 @@
+# FastAPI and server
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Database
+sqlalchemy
+psycopg2-binary
+alembic
+
+# Validation and settings
+pydantic
+pydantic-settings
+email-validator
+
+# Authentication
+python-jose[cryptography]
+passlib[bcrypt]
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+
+# LLM Integration
+anthropic
+langchain
+langchain-anthropic
+
+# HTTP client
+httpx
+requests
+
+# ML/Data Science
+scikit-learn
+pandas
+joblib
+numpy
+
+# Utilities
+python-dotenv
