@@ -1,4 +1,4 @@
-# 📊 Student Financial Behavior Prediction  
+# 📊 Student Financial Advisor  
 ### Overspending Regression + Financial Stress Classification
 
 This repository contains two machine learning models designed to analyze and predict student financial behavior using expense and demographic data. The project includes:
