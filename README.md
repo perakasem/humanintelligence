@@ -38,6 +38,8 @@ cd <repo-name>
 pip install -r requirements.txt
 
 
+---
+
 ## 📘 Dataset Description
 
 The dataset includes student spending categories and demographic information:
